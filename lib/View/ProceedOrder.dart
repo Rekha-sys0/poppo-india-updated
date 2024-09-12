@@ -41,7 +41,7 @@ class _ProceedOrderState extends State<ProceedOrder> {
   double discountAmount = 0;
   List<String> disType = [
     "Discount %",
-    "Discount INR",
+    "Discount AED",
   ];
   double cardAmount = 0;
   double cashAmount = 0;
@@ -252,7 +252,7 @@ class _ProceedOrderState extends State<ProceedOrder> {
               if (orientation == Orientation.portrait) {
                 return Portrait();
               } else if (orientation == Orientation.landscape) {
-                return Portrait();
+                return Landscape();
               } else {
                 return Portrait();
               }
@@ -287,7 +287,7 @@ class _LandscapeState extends State<Landscape> {
   double discountAmount = 0;
   List<String> disType = [
     "Discount %",
-    "Discount INR",
+    "Discount AED",
   ];
   double cardAmount = 0;
   double cashAmount = 0;
@@ -566,7 +566,7 @@ class _LandscapeState extends State<Landscape> {
                         }
                       },
                       child: Text(
-                        "Validate And Pay " + total.toStringAsFixed(2) + " INR",
+                        "Validate And Pay " + total.toStringAsFixed(2) + " AED",
                       ),
                     ),
                   ),
@@ -606,7 +606,7 @@ class _LandscapeState extends State<Landscape> {
                                 ),
                               ),
                               Text(
-                                total.toStringAsFixed(2) + " INR",
+                                total.toStringAsFixed(2) + " AED",
                                 style: TextStyle(
                                   fontSize: 64,
                                   fontWeight: FontWeight.bold,
@@ -626,7 +626,7 @@ class _LandscapeState extends State<Landscape> {
                                         ),
                                       ),
                                       Text(
-                                        subtotal.toString() + " INR",
+                                        subtotal.toString() + " AED",
                                       ),
                                     ],
                                   ),
@@ -640,7 +640,7 @@ class _LandscapeState extends State<Landscape> {
                                       ),
                                       Text(
                                         discount.text +
-                                            ((disValue == 0) ? "%" : "INR"),
+                                            ((disValue == 0) ? "%" : "AED"),
                                       ),
                                     ],
                                   ),
@@ -659,7 +659,7 @@ class _LandscapeState extends State<Landscape> {
                                         ),
                                       ),
                                       Text((taxAmount.toStringAsFixed(2)) +
-                                          " INR"),
+                                          " AED"),
                                     ],
                                   ),
                                   Row(
@@ -670,7 +670,7 @@ class _LandscapeState extends State<Landscape> {
                                           color: dark.withOpacity(0.5),
                                         ),
                                       ),
-                                      Text(change.toString() + " INR"),
+                                      Text(change.toString() + " AED"),
                                     ],
                                   ),
                                 ],
@@ -1337,7 +1337,7 @@ class _PortraitState extends State<Portrait> {
   double discountAmount = 0;
   List<String> disType = [
     "Discount %",
-    "Discount INR",
+    "Discount AED",
   ];
   double cardAmount = 0;
   double cashAmount = 0;
@@ -1615,7 +1615,7 @@ class _PortraitState extends State<Portrait> {
                     }
                   },
                   child: Text(
-                    "Validate And Pay " + total.toStringAsFixed(2) + " INR",
+                    "Validate And Pay " + total.toStringAsFixed(2) + " AED",
                   ),
                 ),
               ),
@@ -1651,7 +1651,7 @@ class _PortraitState extends State<Portrait> {
                               ),
                             ),
                             Text(
-                              total.toStringAsFixed(2) + " INR",
+                              total.toStringAsFixed(2) + " AED",
                               style: TextStyle(
                                 fontSize: 64,
                                 fontWeight: FontWeight.bold,
@@ -1670,7 +1670,7 @@ class _PortraitState extends State<Portrait> {
                                       ),
                                     ),
                                     Text(
-                                      subtotal.toString() + " INR",
+                                      subtotal.toString() + " AED",
                                     ),
                                   ],
                                 ),
@@ -1684,7 +1684,7 @@ class _PortraitState extends State<Portrait> {
                                     ),
                                     Text(
                                       discount.text +
-                                          ((disValue == 0) ? "%" : "INR"),
+                                          ((disValue == 0) ? "%" : "AED"),
                                     ),
                                   ],
                                 ),
@@ -1702,7 +1702,7 @@ class _PortraitState extends State<Portrait> {
                                       ),
                                     ),
                                     Text((taxAmount.toStringAsFixed(2)) +
-                                        " INR"),
+                                        " AED"),
                                   ],
                                 ),
                                 Row(
@@ -1713,7 +1713,7 @@ class _PortraitState extends State<Portrait> {
                                         color: dark.withOpacity(0.5),
                                       ),
                                     ),
-                                    Text(change.toStringAsFixed(2) + " INR"),
+                                    Text(change.toStringAsFixed(2) + " AED"),
                                   ],
                                 ),
                               ],
@@ -2124,215 +2124,208 @@ class _PortraitState extends State<Portrait> {
                         ),
                       ),
                     if (invoiceType == 2)
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              InputField(
-                                tag: "Contact No:",
-                                controller: contact,
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 0.8,
-                                ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            InputField(
+                              tag: "Contact No:",
+                              controller: contact,
+                              padding: EdgeInsets.symmetric(
+                                vertical: 0.8,
                               ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              FutureBuilder(
-                                builder: (BuildContext context,
-                                    AsyncSnapshot snapshot) {
-                                  if (cust
-                                          .where((i) =>
-                                              (i.mobileNo == contact.text))
-                                          .toList()
-                                          .length >
-                                      0) {
-                                    Customer cData = cust
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            FutureBuilder(
+                              builder: (BuildContext context,
+                                  AsyncSnapshot snapshot) {
+                                if (cust
                                         .where(
                                             (i) => (i.mobileNo == contact.text))
-                                        .toList()[0];
-                                    return ListTile(
-                                      title: Text("Name: " + cData.name),
-                                      subtitle: Text(
-                                        "Address: " +
-                                            cData.address +
-                                            "\n Landmark: " +
-                                            cData.landmark,
-                                      ),
-                                      isThreeLine: true,
-                                    );
-                                  } else {
-                                    return Opacity(opacity: 0);
-                                  }
-                                },
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              if (cust
+                                        .toList()
+                                        .length >
+                                    0) {
+                                  Customer cData = cust
                                       .where(
                                           (i) => (i.mobileNo == contact.text))
-                                      .toList()
-                                      .length ==
-                                  0)
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                      dark,
+                                      .toList()[0];
+                                  return ListTile(
+                                    title: Text("Name: " + cData.name),
+                                    subtitle: Text(
+                                      "Address: " +
+                                          cData.address +
+                                          "\n Landmark: " +
+                                          cData.landmark,
                                     ),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            CreateCustomer(
-                                          mobile: contact.text,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: Text(
-                                    "Add Customer",
+                                    isThreeLine: true,
+                                  );
+                                } else {
+                                  return Opacity(opacity: 0);
+                                }
+                              },
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            if (cust
+                                    .where((i) => (i.mobileNo == contact.text))
+                                    .toList()
+                                    .length ==
+                                0)
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                    dark,
                                   ),
                                 ),
-                              if (cust
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          CreateCustomer(
+                                        mobile: contact.text,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  "Add Customer",
+                                ),
+                              ),
+                            if (cust
+                                    .where((i) => (i.mobileNo == contact.text))
+                                    .toList()
+                                    .length >
+                                0)
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                    dark,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Customer cData = cust
                                       .where(
                                           (i) => (i.mobileNo == contact.text))
-                                      .toList()
-                                      .length >
-                                  0)
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                      dark,
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    Customer cData = cust
-                                        .where(
-                                            (i) => (i.mobileNo == contact.text))
-                                        .toList()[0];
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            CreateCustomer(
-                                          mobile: cData.mobileNo,
-                                          name: cData.name,
-                                          address: cData.address,
-                                          landmark: cData.landmark,
-                                        ),
+                                      .toList()[0];
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          CreateCustomer(
+                                        mobile: cData.mobileNo,
+                                        name: cData.name,
+                                        address: cData.address,
+                                        landmark: cData.landmark,
                                       ),
-                                    );
-                                  },
-                                  child: Text(
-                                    "Update Customer",
-                                  ),
-                                ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              InputField(
-                                tag: "Driver No:",
-                                controller: delivery,
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 0.8,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              FutureBuilder(
-                                builder: (BuildContext context,
-                                    AsyncSnapshot snapshot) {
-                                  if (driver
-                                          .where((i) =>
-                                              (i.mobileNo == delivery.text))
-                                          .toList()
-                                          .length >
-                                      0) {
-                                    Driver dData = driver
-                                        .where((i) =>
-                                            (i.mobileNo == delivery.text))
-                                        .toList()[0];
-                                    return ListTile(
-                                      title: Text("Name: " + dData.name),
-                                    );
-                                  } else {
-                                    return Opacity(opacity: 0);
-                                  }
+                                    ),
+                                  );
                                 },
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              if (driver
-                                      .where(
-                                          (i) => (i.mobileNo == delivery.text))
-                                      .toList()
-                                      .length ==
-                                  0)
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                      dark,
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            CreateDriver(
-                                          mobile: delivery.text,
-                                          company: deliveryValue,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: Text(
-                                    "Add Delivery",
-                                  ),
+                                child: Text(
+                                  "Update Customer",
                                 ),
-                              if (driver
-                                      .where(
-                                          (i) => (i.mobileNo == delivery.text))
-                                      .toList()
-                                      .length >
-                                  0)
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                      dark,
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    Driver dData = driver
+                              ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            InputField(
+                              tag: "Driver No:",
+                              controller: delivery,
+                              padding: EdgeInsets.symmetric(
+                                vertical: 0.8,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            FutureBuilder(
+                              builder: (BuildContext context,
+                                  AsyncSnapshot snapshot) {
+                                if (driver
                                         .where((i) =>
                                             (i.mobileNo == delivery.text))
-                                        .toList()[0];
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            CreateDriver(
-                                                mobile: delivery.text,
-                                                name: dData.name),
-                                      ),
-                                    );
-                                  },
-                                  child: Text(
-                                    "Update Delivery",
+                                        .toList()
+                                        .length >
+                                    0) {
+                                  Driver dData = driver
+                                      .where(
+                                          (i) => (i.mobileNo == delivery.text))
+                                      .toList()[0];
+                                  return ListTile(
+                                    title: Text("Name: " + dData.name),
+                                  );
+                                } else {
+                                  return Opacity(opacity: 0);
+                                }
+                              },
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            if (driver
+                                    .where((i) => (i.mobileNo == delivery.text))
+                                    .toList()
+                                    .length ==
+                                0)
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                    dark,
                                   ),
                                 ),
-                              SizedBox(
-                                height: 8,
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          CreateDriver(
+                                        mobile: delivery.text,
+                                        company: deliveryValue,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  "Add Delivery",
+                                ),
                               ),
-                            ],
-                          ),
+                            if (driver
+                                    .where((i) => (i.mobileNo == delivery.text))
+                                    .toList()
+                                    .length >
+                                0)
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                    dark,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Driver dData = driver
+                                      .where(
+                                          (i) => (i.mobileNo == delivery.text))
+                                      .toList()[0];
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          CreateDriver(
+                                              mobile: delivery.text,
+                                              name: dData.name),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  "Update Delivery",
+                                ),
+                              ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                          ],
                         ),
                       ),
                   ],

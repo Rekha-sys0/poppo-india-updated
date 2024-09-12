@@ -7,6 +7,7 @@ import 'package:poppos/Model/OrderModel.dart';
 import 'package:poppos/Networking/OfflineData.dart';
 import 'package:poppos/Utills/Color.dart';
 import 'package:poppos/View/InvoicePage.dart';
+import 'package:poppos/View/Pos.dart';
 
 import '../main.dart';
 

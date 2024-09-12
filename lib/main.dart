@@ -1,3 +1,4 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 import 'package:poppos/Model/Auth.dart';
@@ -10,9 +11,19 @@ import './Componant/InputField.dart';
 import './Utills/Color.dart';
 import 'Model/OfflineModel.dart';
 import 'Model/Pinlock.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:sqflite/sqflite.dart';
 
-void main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isWindows || Platform.isLinux) {
+    // Initialize FFI
+    sqfliteFfiInit();
+
+    // Change the default factory. On iOS/Android, if not using `sqlite_flutter_lib` you can forget
+    // this step, it will use the sqlite version available on the system.
+    databaseFactory = databaseFactoryFfi;
+  }
 
   runApp(MyApp());
 }
@@ -128,7 +139,7 @@ class _SplashScreenState extends State<SplashScreen> {
           MaterialPageRoute<void>(
             builder: (BuildContext context) => LoginPage(),
           ),
-          ModalRoute.withName('/login'),
+          ModalRoute.withName('/log '),
         );
       }
     } else {
@@ -301,7 +312,7 @@ class _TabletState extends State<Tablet> {
                   SizedBox(height: 32),
                   Center(
                     child: Text(
-                      "Powered by sysorex",
+                      "Powered by Nable Invent Solutions",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
